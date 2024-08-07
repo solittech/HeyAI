@@ -42,10 +42,18 @@ class PortfolioViewController: UIViewController {
         
         view.addSubview(comparisonStackView)
         
+        // Bond Fund Underweight Section
+        let bondFundStatusLabel = UILabel()
+        bondFundStatusLabel.text = "Your Bond fund is underweighting"
+        bondFundStatusLabel.font = .systemFont(ofSize: 16)
+        bondFundStatusLabel.textColor = .systemRed
+        bondFundStatusLabel.translatesAutoresizingMaskIntoConstraints = false
+        
         // Market Insight
         let marketInsightLabel = UILabel()
         marketInsightLabel.text = "Market Insight: Bonds"
         marketInsightLabel.font = .boldSystemFont(ofSize: 16)
+        marketInsightLabel.translatesAutoresizingMaskIntoConstraints = false
         
         let marketInsightTextView = UITextView()
         marketInsightTextView.text = "Federal Reserve Chairman Powell indicated that US inflation is receding and the job market is slowing..."
@@ -53,12 +61,18 @@ class PortfolioViewController: UIViewController {
         marketInsightTextView.backgroundColor = .clear
         marketInsightTextView.translatesAutoresizingMaskIntoConstraints = false
         
+        let viewMoreButton = UIButton(type: .system)
+        viewMoreButton.setTitle("View more", for: .normal)
+        viewMoreButton.translatesAutoresizingMaskIntoConstraints = false
+        
         let exploreBondFundsButton = UIButton(type: .system)
         exploreBondFundsButton.setTitle("Explore Bond Funds", for: .normal)
         exploreBondFundsButton.translatesAutoresizingMaskIntoConstraints = false
         
+        view.addSubview(bondFundStatusLabel)
         view.addSubview(marketInsightLabel)
         view.addSubview(marketInsightTextView)
+        view.addSubview(viewMoreButton)
         view.addSubview(exploreBondFundsButton)
         
         // Portfolio Information
@@ -78,7 +92,10 @@ class PortfolioViewController: UIViewController {
             comparisonStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             comparisonStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             
-            marketInsightLabel.topAnchor.constraint(equalTo: comparisonStackView.bottomAnchor, constant: 20),
+            bondFundStatusLabel.topAnchor.constraint(equalTo: comparisonStackView.bottomAnchor, constant: 20),
+            bondFundStatusLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            
+            marketInsightLabel.topAnchor.constraint(equalTo: bondFundStatusLabel.bottomAnchor, constant: 20),
             marketInsightLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             
             marketInsightTextView.topAnchor.constraint(equalTo: marketInsightLabel.bottomAnchor, constant: 10),
@@ -86,7 +103,10 @@ class PortfolioViewController: UIViewController {
             marketInsightTextView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             marketInsightTextView.heightAnchor.constraint(equalToConstant: 80),
             
-            exploreBondFundsButton.topAnchor.constraint(equalTo: marketInsightTextView.bottomAnchor, constant: 10),
+            viewMoreButton.topAnchor.constraint(equalTo: marketInsightTextView.bottomAnchor, constant: 5),
+            viewMoreButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            
+            exploreBondFundsButton.topAnchor.constraint(equalTo: viewMoreButton.bottomAnchor, constant: 10),
             exploreBondFundsButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             
             portfolioInfoLabel.topAnchor.constraint(equalTo: exploreBondFundsButton.bottomAnchor, constant: 20),
